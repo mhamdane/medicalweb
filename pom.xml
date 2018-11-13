@@ -4,11 +4,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <version>1.0-SNAPSHOT</version>
-  <groupId>org.medical.io</groupId>
+  <groupId>io.medicalweb.server</groupId>
   <artifactId>medicalweb</artifactId>
 
   <name>Medical Web</name>
-  <description>Java web application to manage doctors patients</description>
+  <description>Java web application to manage doctor's patients</description>
 
   <properties>
 
@@ -23,17 +23,21 @@
     <!-- maven-compiler-plugin -->
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
-
+	<java.version>1.8</java.version>
+	
   </properties>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>1.4.2.RELEASE</version>    
+  </parent>
 
   <dependencies>
      
         <dependency>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-starter-parent</artifactId>
-          <version>${spring-boot-version}</version>
-          <type>pom</type>
-          <scope>import</scope>
+ 			<groupId>org.springframework.boot</groupId>
+    		<artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
     </dependencies>
@@ -55,7 +59,7 @@
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>${spring-boot-version}</version>
         <configuration>
-          <mainClass>org.medical.io.MedicalWebServerApplication</mainClass>
+          <mainClass>io.medicalweb.server.MedicalWebServerApplication</mainClass>
         </configuration>
         <executions>
           <execution>
