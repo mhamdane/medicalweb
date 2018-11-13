@@ -42,4 +42,10 @@ public class DevelopersService
 		}
 	}
 
+	public void deleteDeveloper(String id, Developer developer) 
+	{
+		developers.removeIf(d -> d.getId().equals(id));
+		
+	}
+
 }

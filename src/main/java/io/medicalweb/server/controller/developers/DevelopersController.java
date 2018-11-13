@@ -44,4 +44,12 @@ public class DevelopersController
 		developersService.updateDeveloper(id, developer);
 
 	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = "/developers/{id}")
+	public void deleteDeveloper(@RequestBody Developer developer, @PathVariable String id)
+	{
+		developersService.deleteDeveloper(id, developer);
+
+	}
+
 }
