@@ -19,26 +19,26 @@ public class DevelopersController
 	@Autowired
 	private DevelopersService developersService;
 
-	@RequestMapping("/developpers")
+	@RequestMapping("/developers")
 	public List<Developer> getAllDeveloppers()
 	{
 		return developersService.getAllDeveloppers();
 	}
 
-	@RequestMapping("/developpers/{id}")
+	@RequestMapping("/developers/{id}")
 	public Developer getDeveloper(@PathVariable String id)
 	{
 		return developersService.getDeveloper(id);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/developpers")
+	@RequestMapping(method = RequestMethod.POST, value = "/developers")
 	public void addDeveloper(@RequestBody Developer developer)
 	{
 		developersService.addDeveloper(developer);
 
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/developpers/{id}")
+	@RequestMapping(method = RequestMethod.PUT, value = "/developers/{id}")
 	public void updateDeveloper(@RequestBody Developer developer, @PathVariable String id)
 	{
 		developersService.updateDeveloper(id, developer);
