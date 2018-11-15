@@ -11,27 +11,18 @@
   <description>Java web application to manage doctor's patients</description>
 
   <properties>
-
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-    <version.compiler.plugin>2.3.1</version.compiler.plugin>
-    <version.maven-bundle-plugin>2.3.7</version.maven-bundle-plugin>
-
-    <spring-version>4.0.6.RELEASE</spring-version>
-    <spring-boot-version>1.1.6.RELEASE</spring-boot-version>
-
-    <!-- maven-compiler-plugin -->
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
 	<java.version>1.8</java.version>
-	
+	<start-class>io.medicalweb.server.MedicalWebServerApplication</start-class>
   </properties>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>1.4.2.RELEASE</version>    
+    <version>1.5.4.RELEASE</version>    
   </parent>
 
   <dependencies>
@@ -45,14 +36,42 @@
     	<artifactId>spring-boot-starter-test</artifactId>
 		<scope>test</scope>
     </dependency>
+    
+    <dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-data-jpa</artifactId>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.postgresql</groupId>
+		<artifactId>postgresql</artifactId>
+	</dependency>
+
+	<dependency>
+		<groupId>org.modelmapper</groupId>
+		<artifactId>modelmapper</artifactId>
+		<version>0.7.6</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-java8</artifactId>
+	</dependency>
   </dependencies>
 
   <build>
-    <plugins>
-      <!-- Compiler plugin enforces Java 1.8 compatibility and activates annotation processors -->
+  	<resources>
+		<resource>
+			<directory>src/main/resources</directory>
+			<includes>
+				<include>application.properties</include>
+			</includes>
+		</resource>
+	</resources>
+    
+    <plugins>      
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>${version.compiler.plugin}</version>
         <configuration>
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.target}</target>
@@ -62,9 +81,8 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring-boot-version}</version>
         <configuration>
-          <mainClass>io.medicalweb.server.MedicalWebServerApplication</mainClass>
+          <mainClass>${start-class}</mainClass>
         </configuration>
         <executions>
           <execution>
@@ -74,8 +92,10 @@
           </execution>
         </executions>
         </plugin>
-        
     </plugins>
   </build>
-
+  
+  <organization>
+	<name>Medical Web / IOGate</name>
+  </organization>
 </project>
