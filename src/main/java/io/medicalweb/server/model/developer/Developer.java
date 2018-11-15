@@ -1,8 +1,12 @@
 package io.medicalweb.server.model.developer;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Developer
 {
-
+	@Id
 	private String	id;
 	private String	name;
 	private String	title;
