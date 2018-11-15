@@ -1,4 +1,4 @@
-package io.medicalweb.server.dto.developers;
+package io.medicalweb.server.model.developer;
 
 public class Developer
 {

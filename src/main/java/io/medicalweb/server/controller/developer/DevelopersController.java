@@ -1,4 +1,4 @@
-package io.medicalweb.server.controller.developers;
+package io.medicalweb.server.controller.developer;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.medicalweb.server.dto.developers.Developer;
-import io.medicalweb.server.service.developers.DevelopersService;
+import io.medicalweb.server.model.developer.Developer;
+import io.medicalweb.server.service.developer.DevelopersService;
 
 @RestController
 public class DevelopersController

@@ -1,4 +1,4 @@
-package io.medicalweb.server.service.developers;
+package io.medicalweb.server.service.developer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import io.medicalweb.server.dto.developers.Developer;
+import io.medicalweb.server.model.developer.Developer;
 
 @Service
 public class DevelopersService
