@@ -46,9 +46,9 @@ public class DevelopersController
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/developers/{id}")
-	public void deleteDeveloper(@RequestBody Developer developer, @PathVariable String id)
+	public void deleteDeveloper(@PathVariable String id)
 	{
-		developersService.deleteDeveloper(id, developer);
+		developersService.deleteDeveloper(id);
 
 	}
 
