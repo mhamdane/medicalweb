@@ -7,7 +7,7 @@
   <groupId>io.medicalweb.server</groupId>
   <artifactId>medicalweb</artifactId>
 
-  <name>Medical Web</name>
+  <name>Medical Web Application</name>
   <description>Java web application to manage doctor's patients</description>
 
   <properties>
