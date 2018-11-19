@@ -11,12 +11,7 @@
   <description>Java web application to manage doctor's patients</description>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
 	<java.version>1.8</java.version>
-	<start-class>io.medicalweb.server.MedicalWebServerApplication</start-class>
   </properties>
 
   <parent>
@@ -46,6 +41,25 @@
 		<groupId>org.springframework.boot</groupId>
     	<artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
+    
+    <dependency>
+    	<groupId>javax.servlet.jsp.jstl</groupId>
+    	<artifactId>javax.servlet.jsp.jstl-api</artifactId>
+    	<version>1.2.2</version>
+	</dependency>
+	
+	<dependency>
+      <groupId>taglibs</groupId>
+      <artifactId>standard</artifactId>
+      <version>1.1.2</version>
+    </dependency>
+
+    <!-- Tomcat for JSP rendering -->
+    <dependency>
+      <groupId>org.apache.tomcat.embed</groupId>
+      <artifactId>tomcat-embed-jasper</artifactId>
+      <scope>provided</scope>
+    </dependency>    
 	
 	<dependency>
 		<groupId>org.postgresql</groupId>
@@ -65,42 +79,16 @@
   </dependencies>
 
   <build>
-  	<resources>
-		<resource>
-			<directory>src/main/resources</directory>
-			<includes>
-				<include>application.properties</include>
-			</includes>
-		</resource>
-	</resources>
-    
-    <plugins>      
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>${maven.compiler.source}</source>
-          <target>${maven.compiler.target}</target>
-        </configuration>
-      </plugin>
-
+    <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <mainClass>${start-class}</mainClass>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
-        </plugin>
+      </plugin>
     </plugins>
   </build>
-  
+    
   <organization>
 	<name>Medical Web / IOGate</name>
   </organization>
+  <packaging>war</packaging>
 </project>
