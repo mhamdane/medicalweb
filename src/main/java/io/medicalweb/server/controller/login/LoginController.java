@@ -12,10 +12,16 @@ public class LoginController
 	@RequestMapping("/")
 	public String index()
 	{
+		return login();
+	}
+
+	@RequestMapping("/login")
+	public String login()
+	{
 		return "login";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/login")
+	@RequestMapping(method = RequestMethod.POST, value = "/welcome")
 	public String checkAccess(@RequestParam("uname") String uname, Model model)
 	{
 		model.addAttribute("uname", uname);

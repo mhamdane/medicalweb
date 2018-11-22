@@ -12,7 +12,7 @@
 	<h1>Medical Web Access</h1>
 	<hr>
 	<div class="form">
-		<form action="login" method="post" onsubmit="return validate()">
+		<form action="welcome" method="post" onsubmit="return validate()">
 			<table>
 				<tr>
 					<td>Username:</td>
