@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="stylesheet" href="/resources/css/style.css"/>
+<script type="text/javascript" src="/resources/js/app.js"></script>
+<title>:: Medical Web ::</title>
+</head>
+<body>
+	<h1>Medical Web Access</h1>
+	<hr/>
+	<div class="form">
+		<form action="welcome" method="post" onsubmit="return validate()">
+			<table>
+				<tr>
+					<td>Username:</td>
+					<td><input id="username" name="username" type="text"></input></td>
+				</tr>
+				<tr>
+					<td>Password:</td>
+					<td><input id="password" name="password" type="password"></input></td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Login"></input></td>
+					<td><input type="reset" value="Reset"></input></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

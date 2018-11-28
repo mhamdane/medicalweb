@@ -3,7 +3,6 @@ package io.medicalweb.server.service.principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.medicalweb.server.model.developer.Developer;
 import io.medicalweb.server.model.principal.UserLogin;
 import io.medicalweb.server.repository.UserRepository;
 
