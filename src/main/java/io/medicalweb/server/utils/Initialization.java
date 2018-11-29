@@ -18,6 +18,12 @@ public class Initialization
 
 	@Value("${spring.jpa.hibernate.ddl-auto}")
 	private String				hibernateValue;
+	
+	@Value("${medicalweb.administrator.username}")
+	private String username;
+	
+	@Value("${medicalweb.administrator.password}")
+	private String password;
 
 	@Autowired
 	private UserService userService;
@@ -25,13 +31,14 @@ public class Initialization
 	@PostConstruct
 	public void init()
 	{
-		LOG.info("Init administrator user");
-
-		LOG.debug("spring.jpa.hibernate.ddl-auto={}", hibernateValue);
+		LOG.info("spring.jpa.hibernate.ddl-auto={}", hibernateValue);
 		if ("create".equals(hibernateValue) || "create-drop".equals(hibernateValue))
 		{
-			userService.addUser(new UserLogin("hserhani", "changeme"));
-			LOG.info("Administrator user created with success");
+			userService.addUser(new UserLogin(username, password));
+			LOG.info("---Administrator created with success---");
+		}
+		else {
+			LOG.info("---Administrator already created---");
 		}
 
 	}
