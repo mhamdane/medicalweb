@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR" name="medicalweb-log4j2-config" monitorInterval="60">
+	<Properties>
+		<Property name="LOG_DIR">logs</Property>
+		<Property name="ARCHIVE">${LOG_DIR}/archive</Property>
+		<Property name="PATTERN">%-5level %d [%t] %c{1.}:%M(%L): %m%n</Property>
+		<Property name="PATTERN_INTERFACES">%-5level %d [%t]: %m%n</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="${PATTERN}" />
+
+		</Console>
+
+		<RollingFile name="fileWriter" fileName="${LOG_DIR}/medicalweb-server.log"
+			filePattern="${ARCHIVE}/medicalweb-server.log.%d{yyyy-MM-dd-hh-mm}.gz">
+			<PatternLayout pattern="${PATTERN}" />
+			<MarkerFilter marker="INTERFACE" onMatch="DENY" onMismatch="NEUTRAL"/>
+			<Policies>
+				<!-- allows 50Mb of logs max -->
+				<SizeBasedTriggeringPolicy size="50 MB" />
+			</Policies>
+			<!-- 20 logs max are kept -->
+			<DefaultRolloverStrategy max="20" />
+		</RollingFile>
+		
+	</Appenders>
+
+	<Loggers>
+		<Root level="WARN">
+			<AppenderRef ref="fileWriter" />
+			<AppenderRef ref="STDOUT" />
+		</Root>
+
+		<Logger name="io.medicalweb.server" level="INFO" additivity="true" />
+
+	</Loggers>
+</Configuration>
