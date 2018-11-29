@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import io.medicalweb.server.model.principal.UserLogin;
 import io.medicalweb.server.service.principal.UserService;
@@ -17,39 +16,28 @@ public class LoginController
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/")
-	public ModelAndView index()
+	@RequestMapping(method = RequestMethod.GET, value = { "/", "/login" })
+	public String login()
 	{
-		return login();
+		// return new ModelAndView("login", "userForm", new UserLogin());
+		return "login";
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/login")
-	public ModelAndView login()
-	{
-		return new ModelAndView("login", "userlogin", new UserLogin());
-	}
-	
-	@RequestMapping("/user")
-	public void addUser()
-	{
-		UserLogin usertest = new UserLogin("hserhani", "changeme");
-		userService.addUser(usertest);
-	}
-
-	@RequestMapping(method = RequestMethod.POST, value = "/welcome")
-	public String checkAccess(@ModelAttribute("userlogin") UserLogin user, Model model)
+	@RequestMapping(method = RequestMethod.POST, value = "/login")
+	public String checkAccess(@ModelAttribute("userForm") UserLogin user, Model model)
 	{
 
 		UserLogin userPerssisted = userService.getUser(user.getUsername());
 
-		if (userPerssisted.getPassword().equals(user.getPassword()))
+		if (userService.getUser(user.getUsername()) != null && userPerssisted.getPassword().equals(user.getPassword()))
 		{
 		
 			model.addAttribute("username", user.getUsername());
-			return "welcome";
+			return "home";
 		}
 		
-		else return "loginfailed";
+		model.addAttribute("invalidCredentials", true);
+		return "login";
 				
 	}
 	
