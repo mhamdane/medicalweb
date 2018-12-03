@@ -1,7 +1,7 @@
 function validate(){
-	var uname = document.getElementById('uname');
-	var pwd = document.getElementById('pwd');
-	if (uname == '' || pwd == ''){
+	var uname = document.getElementById("username");
+	var pwd = document.getElementById("password");
+	if (uname == '' || pwd == '') {
 		alert("Username or password is empty!");
 		return false;
 	}

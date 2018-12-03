@@ -2,7 +2,7 @@ package io.medicalweb.server.model.principal;
 
 import java.util.Date;
 
-public class Person extends UserLogin{
+public class Person extends UserForm{
 	
 	private int id;
 	private String cin; 

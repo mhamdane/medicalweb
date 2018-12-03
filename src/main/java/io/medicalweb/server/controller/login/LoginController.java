@@ -6,8 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import io.medicalweb.server.model.principal.UserLogin;
+import io.medicalweb.server.model.principal.UserForm;
 import io.medicalweb.server.service.principal.UserService;
 
 @Controller
@@ -19,21 +20,25 @@ public class LoginController
 	@RequestMapping(method = RequestMethod.GET, value = { "/", "/login" })
 	public String login()
 	{
-		// return new ModelAndView("login", "userForm", new UserLogin());
 		return "login";
 	}
 
+	@RequestMapping(value = "/home", method = RequestMethod.GET)
+	public String homePage()
+	{
+		return "home";
+	}
+
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
-	public String checkAccess(@ModelAttribute("userForm") UserLogin user, Model model)
+	public String checkAccess(@ModelAttribute("userForm") UserForm user, Model model, RedirectAttributes attributes)
 	{
 
-		UserLogin userPerssisted = userService.getUser(user.getUsername());
+		UserForm userPerssisted = userService.getUser(user.getUsername());
 
 		if (userService.getUser(user.getUsername()) != null && userPerssisted.getPassword().equals(user.getPassword()))
 		{
-		
-			model.addAttribute("username", user.getUsername());
-			return "home";
+			attributes.addAttribute("username", user.getUsername());
+			return "redirect:home";
 		}
 		
 		model.addAttribute("invalidCredentials", true);

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import io.medicalweb.server.model.principal.UserLogin;
+import io.medicalweb.server.model.principal.UserForm;
 import io.medicalweb.server.service.principal.UserService;
 
 @Component
@@ -34,7 +34,7 @@ public class Initialization
 		LOG.info("spring.jpa.hibernate.ddl-auto={}", hibernateValue);
 		if ("create".equals(hibernateValue) || "create-drop".equals(hibernateValue))
 		{
-			userService.addUser(new UserLogin(username, password));
+			userService.addUser(new UserForm(username, password));
 			LOG.info("---Administrator created with success---");
 		}
 		else {

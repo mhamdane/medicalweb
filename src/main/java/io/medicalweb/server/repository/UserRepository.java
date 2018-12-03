@@ -2,8 +2,8 @@ package io.medicalweb.server.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import io.medicalweb.server.model.principal.UserLogin;
+import io.medicalweb.server.model.principal.UserForm;
 
-public interface UserRepository extends CrudRepository<UserLogin, String> {
+public interface UserRepository extends CrudRepository<UserForm, String> {
 
 }
