@@ -10,6 +10,7 @@
 <body>
 	<h1>Medical Web Access</h1>
 	<hr/>
-	<h3 th:text="'Welcome : ' + ${#httpServletRequest.getParameter('username')}"></h3>
+	<h3 th:text="'Welcome using RedirectAttributes : ' + ${#httpServletRequest.getParameter('username')}"></h3>
+	<h3 th:text="'Welcome using Model : ' + ${username}"></h3>
 </body>
 </html>
