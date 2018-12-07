@@ -1,4 +1,4 @@
-package io.medicalweb.server.controller.login;
+package io.medicalweb.server.controller.authentication;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
