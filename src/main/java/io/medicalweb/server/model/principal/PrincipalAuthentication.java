@@ -4,16 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class UserForm {
+public class PrincipalAuthentication {
 	@Id
 	private String username;
 	private String password;
 	
-	public UserForm() {
+	public PrincipalAuthentication() {
 		super();
 	}
 			
-	public UserForm(String username, String password) {
+	public PrincipalAuthentication(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;

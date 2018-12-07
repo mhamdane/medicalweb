@@ -2,10 +2,17 @@ package io.medicalweb.server.model.principal;
 
 import java.util.Date;
 
-public class Person extends UserForm{
-	
-	private int id;
-	private String cin; 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class Person
+{
+	@Id
+	private String	cin;
 	private String firstname;
 	private String lastname;
 	private String phonenumber;
@@ -16,9 +23,8 @@ public class Person extends UserForm{
 		super();
 	}
 	
-	public Person(int id, String cin, String firstname, String lastname, String phonenumber, Date dob, String email, String username, String password) {
-		super(username,password);
-		this.id = id;
+	public Person(String cin, String firstname, String lastname, String phonenumber, Date dob, String email)
+	{
 		this.cin = cin;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -27,18 +33,6 @@ public class Person extends UserForm{
 		this.email = email;
 	}
 
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getCin() {
-		return cin;
-	}
-	public void setCin(String cin) {
-		this.cin = cin;
-	}
 	public String getFirstname() {
 		return firstname;
 	}

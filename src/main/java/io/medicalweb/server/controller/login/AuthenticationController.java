@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import io.medicalweb.server.model.principal.UserForm;
-import io.medicalweb.server.service.principal.UserService;
+import io.medicalweb.server.model.principal.PrincipalAuthentication;
+import io.medicalweb.server.service.principal.PrincipalAuthenticationService;
 
 @Controller
-public class LoginController
+public class AuthenticationController
 {
 	@Autowired
-	private UserService userService;
-	private UserForm	userPerssisted;
+	private PrincipalAuthenticationService	principalAuthenticationService;
+	private PrincipalAuthentication			principalAuthentication;
 	private final static Logger	LOG	= LogManager.getLogger();
 	
 	@RequestMapping(method = RequestMethod.GET, value = { "/", "/login" })
@@ -29,10 +29,10 @@ public class LoginController
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String homePage(Model model)
 	{
-		if (userPerssisted != null)
+		if (principalAuthentication != null)
 		{
-			LOG.info("---User \"{}\" was granted to access the home page---", userPerssisted.getUsername());
-			model.addAttribute("username", userPerssisted.getUsername());
+			LOG.info("---User \"{}\" was granted to access the home page---", principalAuthentication.getUsername());
+			model.addAttribute("username", principalAuthentication.getUsername());
 			return "home";
 		}
 		LOG.info("---Attempt to access home page without authentication---");
@@ -41,11 +41,11 @@ public class LoginController
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
-	public String checkAccess(@ModelAttribute("userForm") UserForm user, Model model)
+	public String checkAccess(@ModelAttribute("userForm") PrincipalAuthentication user, Model model)
 	{
-		userPerssisted = userService.getUser(user.getUsername());
+		principalAuthentication = principalAuthenticationService.getUser(user.getUsername());
 
-		if (userService.getUser(user.getUsername()) != null && userPerssisted.getPassword().equals(user.getPassword()))
+		if (principalAuthenticationService.getUser(user.getUsername()) != null && principalAuthentication.getPassword().equals(user.getPassword()))
 		{
 			return "redirect:home";
 		}
