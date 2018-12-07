@@ -41,10 +41,11 @@ public class Initialization
 		LOG.info("spring.jpa.hibernate.ddl-auto={}", hibernateValue);
 		if ("create".equals(hibernateValue) || "create-drop".equals(hibernateValue) || "update".equals(hibernateValue))
 		{
-			principalAuthenticationService.addUser(new PrincipalAuthentication(username, password));
+			principalAuthenticationService.addPrincipalAuthentication(new PrincipalAuthentication(username, password));
 			LOG.info("---Administrator created with success---");
 			
-			doctorService.addDoctor(new Doctor("X26892", "Hicham", "SERHANI", "0668831210", new Date(), "hserhani8@gmail.com", "Pediatre", principalAuthenticationService.getUser(username)));
+			doctorService.addDoctor(
+					new Doctor("X26892", "Hicham", "SERHANI", "0668831210", new Date(), "hserhani8@gmail.com", "Pediatre", principalAuthenticationService.getPrincipalAuthentication(username)));
 			LOG.info("---Doctor created with success---");
 		}
 		else {

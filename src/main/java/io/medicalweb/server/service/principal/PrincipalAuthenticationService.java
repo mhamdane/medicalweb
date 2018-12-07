@@ -12,14 +12,14 @@ public class PrincipalAuthenticationService {
 	@Autowired
 	private PrincipalAuthenticationRepository	principalAuthenticationRepository;
 	
-	public PrincipalAuthentication getUser(String username)
+	public PrincipalAuthentication getPrincipalAuthentication(String username)
 	{
 		return principalAuthenticationRepository.findOne(username);
 	}
 	
-	public void addUser(PrincipalAuthentication user)
+	public void addPrincipalAuthentication(PrincipalAuthentication principalAuthentication)
 	{
-		principalAuthenticationRepository.save(user);
+		principalAuthenticationRepository.save(principalAuthentication);
 	}
 
 }

@@ -14,7 +14,7 @@
 	<h3 th:text="'Welcome using Model : ' + ${username}"></h3>
 	<hr/>
 	<div>
-		<form th:action="@{/addDoctor}" th:object="${doctor}" method="post">
+		<form th:action="@{/addDoctor}" th:object="${doctorDTO}" method="post">
 			<table class="form">
 				<tr>
 					<td>CIN:</td>
@@ -31,10 +31,6 @@
 				<tr>
 					<td>phonenumber:</td>
 					<td><input id="phonenumber" name="phonenumber" type="text"></input></td>
-				</tr>
-				<tr>
-					<td>Username:</td>
-					<td><input id="username" name="username" type="text"></input></td>
 				</tr>
 				<tr>
 					<td>dob:</td>

@@ -13,7 +13,7 @@
 	<h1>Medical Web Access</h1>
 	<hr/>
 	<div>
-		<form th:action="@{/login}" th:object="${userForm}" method="post">
+		<form th:action="@{/login}" th:object="${userDTO}" method="post">
 			<p th:if="${invalidCredentials}" class="error">Username or Password is incorrect</p>
 			<table class="form">
 				<tr>

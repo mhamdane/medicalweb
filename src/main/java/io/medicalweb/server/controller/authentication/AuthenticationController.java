@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import io.medicalweb.server.model.dto.principal.UserDTO;
 import io.medicalweb.server.model.principal.PrincipalAuthentication;
 import io.medicalweb.server.service.principal.PrincipalAuthenticationService;
 
@@ -41,16 +42,16 @@ public class AuthenticationController
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/login")
-	public String checkAccess(@ModelAttribute("userForm") PrincipalAuthentication user, Model model)
+	public String checkAccess(@ModelAttribute("userDTO") UserDTO userDTO, Model model)
 	{
-		principalAuthentication = principalAuthenticationService.getUser(user.getUsername());
+		principalAuthentication = principalAuthenticationService.getPrincipalAuthentication(userDTO.getUsername());
 
-		if (principalAuthenticationService.getUser(user.getUsername()) != null && principalAuthentication.getPassword().equals(user.getPassword()))
+		if (principalAuthenticationService.getPrincipalAuthentication(userDTO.getUsername()) != null && principalAuthentication.getPassword().equals(userDTO.getPassword()))
 		{
 			return "redirect:home";
 		}
 		
-		LOG.info("---User \"{}\" was NOT granted to access the home page---", user.getUsername());
+		LOG.info("---User \"{}\" was NOT granted to access the home page---", userDTO.getUsername());
 		model.addAttribute("invalidCredentials", true);
 		return "login";
 				
