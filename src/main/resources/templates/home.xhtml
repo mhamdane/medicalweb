@@ -5,7 +5,7 @@
 <meta charset="utf-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>:: Medical Web ::</title>
+<title th:text="':: Medical Web :: Welcome ' + ${username}"></title>
 </head>
 <body>
 	<h1>Medical Web Access</h1>
@@ -34,7 +34,7 @@
 				</tr>
 				<tr>
 					<td>dob:</td>
-					<td><input id="dob" name="dob" type="text"></input></td>
+					<td><input id="dob" name="dob" type="date" th:value="${#dates.createNow()}"></input></td>
 				</tr>
 				<tr>
 					<td>email:</td>

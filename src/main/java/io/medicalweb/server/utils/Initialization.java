@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import io.medicalweb.server.model.principal.Doctor;
+import io.medicalweb.server.model.principal.Principal;
 import io.medicalweb.server.model.principal.PrincipalAuthentication;
-import io.medicalweb.server.service.principal.DoctorService;
 import io.medicalweb.server.service.principal.PrincipalAuthenticationService;
+import io.medicalweb.server.service.principal.PrincipalService;
 
 @Component
 public class Initialization
@@ -33,20 +33,19 @@ public class Initialization
 	private PrincipalAuthenticationService		principalAuthenticationService;
 
 	@Autowired
-	private DoctorService		doctorService;
+	private PrincipalService				principalService;
 
 	@PostConstruct
 	public void init()
 	{
 		LOG.info("spring.jpa.hibernate.ddl-auto={}", hibernateValue);
-		if ("create".equals(hibernateValue) || "create-drop".equals(hibernateValue) || "update".equals(hibernateValue))
+		if ("create".equals(hibernateValue) || "create-drop".equals(hibernateValue))
 		{
 			principalAuthenticationService.addPrincipalAuthentication(new PrincipalAuthentication(username, password));
-			LOG.info("---Administrator created with success---");
 			
-			doctorService.addDoctor(
-					new Doctor("X26892", "Hicham", "SERHANI", "0668831210", new Date(), "hserhani8@gmail.com", "Pediatre", principalAuthenticationService.getPrincipalAuthentication(username)));
-			LOG.info("---Doctor created with success---");
+			principalService.addPrincipal(
+					new Principal("X26892", "Hicham", "SERHANI", "0668831210", new Date(), "hserhani8@gmail.com", principalAuthenticationService.getPrincipalAuthentication(username)));
+			LOG.info("---Administrator created with success---");
 		}
 		else {
 			LOG.info("---Administrator already created---");

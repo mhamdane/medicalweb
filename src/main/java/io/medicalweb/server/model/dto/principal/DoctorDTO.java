@@ -1,12 +1,17 @@
 package io.medicalweb.server.model.dto.principal;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class DoctorDTO
 {
 	private String	cin;
 	private String	firstname;
 	private String	lastname;
 	private String	phonenumber;
-	private String	dob;
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
+	private Date	dob;
 	private String	email;
 	private String	professionField;
 	private String	username;
@@ -52,12 +57,12 @@ public class DoctorDTO
 		this.phonenumber = phonenumber;
 	}
 
-	public String getDob()
+	public Date getDob()
 	{
 		return dob;
 	}
 
-	public void setDob(String dob)
+	public void setDob(Date dob)
 	{
 		this.dob = dob;
 	}

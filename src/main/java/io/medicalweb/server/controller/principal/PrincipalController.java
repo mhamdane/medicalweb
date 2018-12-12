@@ -1,7 +1,5 @@
 package io.medicalweb.server.controller.principal;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,8 +26,8 @@ public class PrincipalController
 	{
 
 		principalAuthenticationService.addPrincipalAuthentication(new PrincipalAuthentication(doctorDTO.getUsername(), doctorDTO.getPassword()));
-		doctorService.addDoctor(new Doctor(doctorDTO.getCin(), doctorDTO.getFirstname(), doctorDTO.getLastname(), doctorDTO.getPhonenumber(), new Date(), doctorDTO.getEmail(),
-				doctorDTO.getProfessionField(), new PrincipalAuthentication(doctorDTO.getUsername(), doctorDTO.getPassword())));
+		doctorService.addDoctor(new Doctor(doctorDTO.getCin(), doctorDTO.getFirstname(), doctorDTO.getLastname(), doctorDTO.getPhonenumber(), doctorDTO.getDob(), doctorDTO.getEmail(),
+				new PrincipalAuthentication(doctorDTO.getUsername(), doctorDTO.getPassword()), doctorDTO.getProfessionField()));
 
 		return "redirect:login";
 	}

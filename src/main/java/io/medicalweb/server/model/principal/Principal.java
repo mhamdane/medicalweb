@@ -6,24 +6,30 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Person
+public class Principal
 {
 	@Id
 	private String	cin;
 	private String firstname;
 	private String lastname;
 	private String phonenumber;
+	@DateTimeFormat(pattern = "yyyy-mm-dd")
 	private Date dob;
-	private String email;	
-	
-	public Person() {
+	private String					email;
+	@OneToOne
+	private PrincipalAuthentication	principalAuthentication;
+
+	public Principal() {
 		super();
 	}
 	
-	public Person(String cin, String firstname, String lastname, String phonenumber, Date dob, String email)
+	public Principal(String cin, String firstname, String lastname, String phonenumber, Date dob, String email, PrincipalAuthentication principalAuthentication)
 	{
 		this.cin = cin;
 		this.firstname = firstname;
@@ -31,6 +37,7 @@ public class Person
 		this.phonenumber = phonenumber;
 		this.dob = dob;
 		this.email = email;
+		this.principalAuthentication = principalAuthentication;
 	}
 
 	public String getFirstname() {
@@ -62,6 +69,16 @@ public class Person
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public PrincipalAuthentication getPrincipalAuthentication()
+	{
+		return principalAuthentication;
+	}
+
+	public void setPrincipalAuthentication(PrincipalAuthentication principalAuthentication)
+	{
+		this.principalAuthentication = principalAuthentication;
 	}
 
 }
